@@ -9,6 +9,8 @@ public class DialogSystem : MonoBehaviour
 {
     public static DialogSystem instance;
 
+    public GameObject[] Dialogs;
+
     public int Rang; //언어 0은 영어, 1은 한국어
 
     public int day; //몇번째 날인지
@@ -24,6 +26,16 @@ public class DialogSystem : MonoBehaviour
 
     private void Update()
     {
+        if (day == 0)
+        {
+            Dialogs[0].SetActive(true);
+            Dialogs[1].SetActive(false);
+        }
+        else if (day == 1)
+        {
+            Dialogs[0].SetActive(false);
+            Dialogs[1].SetActive(true);
+        }
         ////레이캐스트
 
         //if (Input.GetMouseButtonDown(0))

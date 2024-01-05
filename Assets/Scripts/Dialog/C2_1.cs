@@ -67,7 +67,7 @@ public class C2_1 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("I love the scent of flowers./wait:0.3/ \r\nAt first, I hope romanticism will capture you,\r\nNext, flowers that smell like dirt would be good.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("At the end, I hope you can feel the cool scent naturally.", "제니퍼"));
+            dialogTexts.Add(new DialogData("At the end, I hope you can feel the cool scent naturally.", "제니퍼", () => Show_Button()));
 
             DialogManager.Show(dialogTexts);
         }

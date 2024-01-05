@@ -221,7 +221,7 @@ namespace Doublsb.Dialog
                     Name_Text.text = "제니퍼";
                 }
             }
-            else if(_current_Character.name == "Player")
+            else if(_current_Character.name == "Player" || _current_Character.name == "Player_none")
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
