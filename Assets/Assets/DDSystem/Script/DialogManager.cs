@@ -107,7 +107,7 @@ namespace Doublsb.Dialog
 
         public void Hide()
         {
-            if(_textingRoutine != null)
+            if (_textingRoutine != null)
                 StopCoroutine(_textingRoutine);
 
             if(_printingRoutine != null)
