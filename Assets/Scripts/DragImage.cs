@@ -115,7 +115,7 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
         isFadingOut = true;
 
-        float duration = 2f;
+        float duration = 0.5f;
         float elapsedTime = 0f;
         Color startingColor = buttonImage.color;
 
@@ -133,7 +133,7 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     IEnumerator MoveToOriginalPosition()
     {
-        float duration = 1f;
+        float duration = 0.5f;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
