@@ -3,7 +3,62 @@ guid: 62cb5895ce0a9e847b945a4567307f26
 SketchUpImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Metal Silver]'
+    second: {fileID: 2100000, guid: b0f4787821dfbe240aae627bd3cbe11d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Quartz Light Brown]'
+    second: {fileID: 2100000, guid: f4669796ba7589e44b6797090d85be2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Suede Blue]'
+    second: {fileID: 2100000, guid: a01be7693eff7534689fc00f3487f8bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: '[Wood Veneer 01]'
+    second: {fileID: 2100000, guid: 825672370cd7fd44d83c275a60ac00d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 81b8a7d925e63d447a2ea22fc51ecda3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\uB098\uBB34\uC7AC\uC9C8 1"
+    second: {fileID: 2100000, guid: 6229a74a3794a6e4ca4351fbf455d0ca, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Metal Silver
+    second: {fileID: 2800000, guid: dcd2419213fbcb44aa829936b1762874, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Quartz Light Brown_tint0xC4B496FF
+    second: {fileID: 2800000, guid: 0e97b645fe86dd0448440594c695a35f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Suede Blue_tint0xCCCCCCFF
+    second: {fileID: 2800000, guid: 39c1389b4a04e6a4a8961088315a91f4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Wood 01_tint0x784C2EFF
+    second: {fileID: 2800000, guid: f84b0305558758c469e5d68705292d3f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: "\uB098\uBB34 \uC7AC\uC9C81"
+    second: {fileID: 2800000, guid: 39d6f43dfa7279e42b0871b0e620d93a, type: 3}
   materials:
     materialImportMode: 2
     materialName: 2
