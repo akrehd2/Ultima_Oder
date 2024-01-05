@@ -2,28 +2,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private Image buttonImage;
-    private Color originalBackgroundColor = new Color(0, 0, 0, 0.5f); // 어두운 배경 색상
+    private Color originalBackgroundColor = new Color(0, 0, 0, 0.5f);
 
-    // 추가: 버튼이 중앙으로 이동 중인지 여부
     private bool isMovingToCenter = false;
-
-    // 추가: 드래그 시작 위치 저장
     private Vector2 dragStartPos;
-
-    // 추가: FadeOutButton 코루틴이 이미 실행 중이라면 중단할 플래그
     private bool isFadingOut = false;
-
-    // 추가: 드래그 중인지 여부를 체크하는 플래그
     private bool isDragging = false;
-
-    // 추가: 버튼이 클릭되었는지 여부를 체크하는 플래그
     private bool isButtonClicked = false;
+    private bool isButtonClickable = true;
+
+    private static int totalScore = 0;  // 누적 점수 변수
+
+    private List<string> draggedButtons = new List<string>();
+
+    private static int dragCount = 0;  // 드래그 횟수
 
     void Start()
     {
@@ -34,36 +34,53 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // 추가: 버튼이 클릭되었고 중앙으로 이동 중이 아니면 투명도 조절
-        if (!isMovingToCenter && isButtonClicked)
+        if (!isMovingToCenter && isButtonClicked && isButtonClickable)
         {
             StartCoroutine(FadeOutButton());
         }
 
-        // 추가: 드래그 시작 시 위치 저장
         dragStartPos = rectTransform.anchoredPosition;
-
-        // 추가: 드래그 중임을 표시
         isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // 드래그 중일 때 호출되는 메서드
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 
-        // 추가: 버튼이 중앙으로 이동하고 있는 동안은 투명도 조절하지 않음
         if (!isMovingToCenter)
         {
-            // 추가: 버튼이 중앙에 도달하면 투명도를 0으로 설정
-            if (Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f)
+            if (Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f / canvas.scaleFactor)
             {
                 isMovingToCenter = true;
 
-                // 추가: 드래그 중인 경우에만 FadeOutButton 코루틴 시작
                 if (isDragging)
                 {
                     StartCoroutine(FadeOutButton());
+
+                    // Print the information about the button that was dragged to the center
+                    Debug.Log("Button Dragged to Center: " + gameObject.name);
+
+                    // 추가: 리스트에 버튼 이름 추가
+                    draggedButtons.Add(gameObject.name);
+
+                    // 추가: 최초 4번만 누적하도록 설정
+                    if (dragCount < 4)
+                    {
+                        // 버튼마다 스코어 저장
+                        int perfectScore = CalculateScore("perfect", 10);
+                        int greatScore = CalculateScore("great", 5);
+                        int hmmScore = CalculateScore("hmm", 1);
+
+                        // 최종 스코어 계산 및 누적
+                        totalScore += perfectScore + greatScore + hmmScore;
+                        Debug.Log("Total Score: " + totalScore);
+
+                        // 추가: 리스트 초기화
+                        draggedButtons.Clear();
+                    }
+                    
+                    // 추가: 드래그 횟수 증가
+                    dragCount++;
                 }
             }
         }
@@ -71,26 +88,26 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // 드래그가 종료될 때 호출되는 메서드
-        // 추가: 드래그가 끝났을 때 중앙 이동 중이라면 중단
         if (isMovingToCenter)
         {
             StopAllCoroutines();
-            StartCoroutine(FlickerButton()); // 추가: 버튼 테두리 반짝이기
+            StartCoroutine(FlickerButton());
         }
         else
         {
-            StartCoroutine(MoveToOriginalPosition()); // 추가: 중앙으로 이동하지 않았을 경우 원래 위치로 이동
+            StartCoroutine(MoveToOriginalPosition());
         }
 
-        // 추가: 드래그 종료 시 드래그 중인 플래그 해제
         isDragging = false;
     }
 
-    // 추가: 버튼을 천천히 투명하게 하는 코루틴
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isButtonClicked = isButtonClickable && Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f / canvas.scaleFactor;
+    }
+
     IEnumerator FadeOutButton()
     {
-        // 추가: FadeOutButton 코루틴이 이미 실행 중이라면 중단
         if (isFadingOut)
         {
             yield break;
@@ -98,7 +115,7 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
         isFadingOut = true;
 
-        float duration = 2f; // 투명해지는 데 걸리는 시간 (초)
+        float duration = 2f;
         float elapsedTime = 0f;
         Color startingColor = buttonImage.color;
 
@@ -109,19 +126,14 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             yield return null;
         }
 
-        // 버튼을 비활성화하거나 삭제하는 코드를 추가할 수 있습니다.
-        // 예를 들어:
-        // gameObject.SetActive(false);
-        // 또는
-        // Destroy(gameObject);
+        isButtonClickable = false;
 
-        isFadingOut = false; // 추가: 코루틴 종료 후 플래그 초기화
+        isFadingOut = false;
     }
 
-    // 추가: 버튼을 원래 위치로 천천히 이동하는 코루틴
     IEnumerator MoveToOriginalPosition()
     {
-        float duration = 1f; // 이동하는 데 걸리는 시간 (초)
+        float duration = 1f;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
@@ -130,28 +142,48 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-        // 최초의 상태로 돌아간 후 추가 작업을 할 수 있습니다.
     }
 
-    // 추가: 버튼 테두리가 두 번정도 반짝이는 효과를 구현하는 코루틴
     IEnumerator FlickerButton()
     {
         for (int i = 0; i < 2; i++)
         {
-            buttonImage.color = new Color(1, 1, 1, 1); // 밝게
+            buttonImage.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(0.1f);
-            buttonImage.color = originalBackgroundColor; // 어두워짐
+            buttonImage.color = originalBackgroundColor;
             yield return new WaitForSeconds(0.1f);
         }
-
-        buttonImage.color = new Color(1, 1, 1, 0); // 투명하게
     }
 
-    // 추가: 버튼 클릭 시 호출되는 메서드
-    public void OnPointerDown(PointerEventData eventData)
+    private int CalculateScore(string fileName, int points)
     {
-        // 추가: 버튼이 클릭되었음을 표시
-        isButtonClicked = Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f; // 중앙에 가까울 때만 클릭으로 처리
+        int score = 0;
+
+        foreach (string buttonName in draggedButtons)
+        {
+            // 파일 이름 구성
+            TextAsset textAsset = Resources.Load<TextAsset>(fileName);
+
+            // 파일 존재 여부 확인
+            if (textAsset != null)
+            {
+                // 파일 내용 읽기
+                string fileContents = textAsset.text;
+
+                // 버튼의 이름과 파일 내용이 일치하는 경우에만 점수 부여
+                if (fileContents.Contains(buttonName))
+                {
+                    score += points;
+                }
+
+                Debug.Log(buttonName + " contents: " + fileContents);
+            }
+            else
+            {
+                Debug.LogError(fileName + " does not exist in Resources!");
+            }
+        }
+
+        return score;
     }
 }
