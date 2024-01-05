@@ -2,22 +2,28 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
     private RectTransform rectTransform;
     private Canvas canvas;
     private Image buttonImage;
-    private Color originalBackgroundColor = new Color(0, 0, 0, 0.5f); // 어두운 배경 색상
+    private Color originalBackgroundColor = new Color(0, 0, 0, 0.5f);
 
     private bool isMovingToCenter = false;
     private Vector2 dragStartPos;
     private bool isFadingOut = false;
     private bool isDragging = false;
     private bool isButtonClicked = false;
-
-    // 추가: 클릭 가능 여부를 나타내는 변수
     private bool isButtonClickable = true;
+
+    private static int totalScore = 0;  // 누적 점수 변수
+
+    private List<string> draggedButtons = new List<string>();
+
+    private static int dragCount = 0;  // 드래그 횟수
 
     void Start()
     {
@@ -28,7 +34,6 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // 추가: 버튼이 클릭되었고 클릭 가능한 상태이면 투명도 조절
         if (!isMovingToCenter && isButtonClicked && isButtonClickable)
         {
             StartCoroutine(FadeOutButton());
@@ -51,6 +56,31 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                 if (isDragging)
                 {
                     StartCoroutine(FadeOutButton());
+
+                    // Print the information about the button that was dragged to the center
+                    Debug.Log("Button Dragged to Center: " + gameObject.name);
+
+                    // 추가: 리스트에 버튼 이름 추가
+                    draggedButtons.Add(gameObject.name);
+
+                    // 추가: 최초 4번만 누적하도록 설정
+                    if (dragCount < 4)
+                    {
+                        // 버튼마다 스코어 저장
+                        int perfectScore = CalculateScore("perfect", 10);
+                        int greatScore = CalculateScore("great", 5);
+                        int hmmScore = CalculateScore("hmm", 1);
+
+                        // 최종 스코어 계산 및 누적
+                        totalScore += perfectScore + greatScore + hmmScore;
+                        Debug.Log("Total Score: " + totalScore);
+
+                        // 추가: 리스트 초기화
+                        draggedButtons.Clear();
+                    }
+                    
+                    // 추가: 드래그 횟수 증가
+                    dragCount++;
                 }
             }
         }
@@ -69,6 +99,11 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
         }
 
         isDragging = false;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        isButtonClicked = isButtonClickable && Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f / canvas.scaleFactor;
     }
 
     IEnumerator FadeOutButton()
@@ -91,7 +126,6 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             yield return null;
         }
 
-        // 추가: 클릭 불가능 상태로 변경
         isButtonClickable = false;
 
         isFadingOut = false;
@@ -119,15 +153,37 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             buttonImage.color = originalBackgroundColor;
             yield return new WaitForSeconds(0.1f);
         }
-
-        // 추가: 클릭 가능 상태로 변경
-        isButtonClickable = true;
-        buttonImage.color = new Color(1, 1, 1, 0);
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    private int CalculateScore(string fileName, int points)
     {
-        // 추가: 클릭 가능한 상태이면서 중앙에 가까우면 클릭으로 처리
-        isButtonClicked = isButtonClickable && Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f / canvas.scaleFactor;
+        int score = 0;
+
+        foreach (string buttonName in draggedButtons)
+        {
+            // 파일 이름 구성
+            TextAsset textAsset = Resources.Load<TextAsset>(fileName);
+
+            // 파일 존재 여부 확인
+            if (textAsset != null)
+            {
+                // 파일 내용 읽기
+                string fileContents = textAsset.text;
+
+                // 버튼의 이름과 파일 내용이 일치하는 경우에만 점수 부여
+                if (fileContents.Contains(buttonName))
+                {
+                    score += points;
+                }
+
+                Debug.Log(buttonName + " contents: " + fileContents);
+            }
+            else
+            {
+                Debug.LogError(fileName + " does not exist in Resources!");
+            }
+        }
+
+        return score;
     }
 }

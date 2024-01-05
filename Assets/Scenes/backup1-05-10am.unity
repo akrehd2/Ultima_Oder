@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 187719537}
   - component: {fileID: 187719536}
   m_Layer: 5
-  m_Name: coconut
+  m_Name: button1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 288338744}
   - component: {fileID: 288338743}
   m_Layer: 5
-  m_Name: patchouli
+  m_Name: button1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1450,7 +1450,7 @@ GameObject:
   - component: {fileID: 338956392}
   - component: {fileID: 338956393}
   m_Layer: 5
-  m_Name: coconut
+  m_Name: test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4346,7 +4346,7 @@ GameObject:
   - component: {fileID: 975945790}
   - component: {fileID: 975945789}
   m_Layer: 5
-  m_Name: cinnamon
+  m_Name: button1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6256,8 +6256,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1133, y: 68}
-  m_SizeDelta: {x: 170.835, y: 177.3006}
+  m_AnchoredPosition: {x: -1146, y: 76.06}
+  m_SizeDelta: {x: 128.449, y: 109.4831}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1533633985
 MonoBehaviour:
