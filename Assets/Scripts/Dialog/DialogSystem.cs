@@ -13,6 +13,8 @@ public class DialogSystem : MonoBehaviour
 
     public int day; //몇번째 날인지
 
+    public int index;
+
     //public Vector3 clickPos;
 
     private void Awake()

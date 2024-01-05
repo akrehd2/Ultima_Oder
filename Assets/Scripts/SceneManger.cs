@@ -9,4 +9,9 @@ public class SceneManger : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
+
+    public void GotoMoveScene()
+    {
+        SceneManager.LoadScene("MoveScene");
+    }
 }
