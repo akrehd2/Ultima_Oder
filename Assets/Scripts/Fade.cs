@@ -15,6 +15,14 @@ public class Fade : MonoBehaviour
         FadeOut();
     }
 
+    public void ChangeDay()
+    {
+        DialogSystem.instance.day += 1;
+        FadeImage.gameObject.SetActive(true);
+        FadeImage.color = new Color(0, 0, 0, 1);
+        Invoke("FadeOut", 2f);
+    }
+
     public void FadeIn()
     {
         StartCoroutine(FadeInButton());

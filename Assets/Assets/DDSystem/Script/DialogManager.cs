@@ -221,7 +221,7 @@ namespace Doublsb.Dialog
                     Name_Text.text = "제니퍼";
                 }
             }
-            else if(_current_Character.name == "Player" || _current_Character.name == "Player_none")
+            else if(_current_Character.name == "Player" || _current_Character.name == "Player_none" || _current_Character.name == "Player_A")
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
@@ -230,6 +230,17 @@ namespace Doublsb.Dialog
                 else
                 {
                     Name_Text.text = "나";
+                }
+            }
+            else if (_current_Character.name == "앤" || _current_Character.name == "앤_C")
+            {
+                if (DialogSystem.instance.Rang == 0)
+                {
+                    Name_Text.text = "Anne";
+                }
+                else
+                {
+                    Name_Text.text = "앤";
                 }
             }
 
