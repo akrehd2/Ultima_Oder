@@ -19,7 +19,7 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private bool isButtonClicked = false;
     private bool isButtonClickable = true;
 
-    private static int totalScore = 0;  // 누적 점수 변수
+    public static int totalScore = 0;  // 누적 점수 변수
 
     private List<string> draggedButtons = new List<string>();
 
@@ -63,8 +63,8 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     // 추가: 리스트에 버튼 이름 추가
                     draggedButtons.Add(gameObject.name);
 
-                    // 추가: 최초 4번만 누적하도록 설정
-                    if (dragCount < 4)
+                    // 추가: 최초 3번만 누적하도록 설정
+                    if (dragCount < 3)
                     {
                         // 버튼마다 스코어 저장
                         int perfectScore = CalculateScore("perfect", 10);
@@ -153,6 +153,7 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             buttonImage.color = originalBackgroundColor;
             yield return new WaitForSeconds(0.1f);
         }
+        gameObject.SetActive(false);
     }
 
     private int CalculateScore(string fileName, int points)
