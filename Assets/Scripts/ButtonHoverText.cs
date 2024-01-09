@@ -1,14 +1,17 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class ButtonHoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public Text hoverText; // Text 컴포넌트
+    public TextMeshProUGUI hoverText; // Text 컴포넌트
     public GameObject hoverObject; // 나타날 게임 오브젝트
 
     private bool isClicked = false; // 클릭 여부를 확인하기 위한 변수
-    private string originalText; // 원래 텍스트를 저장하는 변수
+    public string originalTextE; // 원래 텍스트를 저장하는 변수
+    public string originalTextK; // 원래 텍스트를 저장하는 변수
 
     // 호버 시작 시 호출될 메서드
     public void OnPointerEnter(PointerEventData eventData)
@@ -16,8 +19,15 @@ public class ButtonHoverText : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (hoverText != null && !isClicked)
         {
             hoverText.gameObject.SetActive(true);
-            originalText = hoverText.text; // 원래 텍스트 저장
-            hoverText.text = originalText; // 저장된 원래 텍스트 출력
+
+            if (DialogSystem.instance.Rang == 0)
+            {
+                hoverText.text = originalTextE; // 저장된 원래 텍스트 출력
+            }
+            else
+            {
+                hoverText.text = originalTextK; // 저장된 원래 텍스트 출력
+            }
         }
 
         if (hoverObject != null)
@@ -34,7 +44,6 @@ public class ButtonHoverText : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (hoverText != null)
             {
                 hoverText.gameObject.SetActive(false);
-                hoverText.text = originalText; // 저장된 원래 텍스트 출력
             }
 
             if (hoverObject != null)

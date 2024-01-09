@@ -18,6 +18,10 @@ public class DialogSystem : MonoBehaviour
 
     public int Result;
 
+    public bool[] MadePf;
+
+    public List<int> Notelist = new List<int>() { 0, 0, 0, 0, 0, 0 };
+
     private string savedHash;
 
     private void Awake()

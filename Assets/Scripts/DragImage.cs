@@ -8,6 +8,11 @@ using System.IO;
 public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
 {
     private RectTransform rectTransform;
+    public RectTransform rectTransform2;
+
+    private Rect rect1;
+    private Rect rect2;
+
     private Canvas canvas;
     private Image buttonImage;
     private Color originalBackgroundColor = new Color(0, 0, 0, 0.5f);
@@ -19,11 +24,13 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     private bool isButtonClicked = false;
     private bool isButtonClickable = true;
 
+    public int Note;
+
     public static int totalScore = 0;  // 누적 점수 변수
 
     private List<string> draggedButtons = new List<string>();
 
-    private static int dragCount = 0;  // 드래그 횟수
+    public static int dragCount = 0;  // 드래그 횟수
 
     void Start()
     {
@@ -47,9 +54,16 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 
+        rect1 = new Rect(rectTransform.position.x - rectTransform.rect.width / 2,
+                         rectTransform.position.y - rectTransform.rect.height / 2,
+                         rectTransform.rect.width, rectTransform.rect.height);
+        rect2 = new Rect(rectTransform2.position.x - (rectTransform2.rect.width - 500) / 2,
+                         rectTransform2.position.y - rectTransform2.rect.height / 2,
+                         rectTransform2.rect.width - 500, rectTransform2.rect.height - 100);
+
         if (!isMovingToCenter)
         {
-            if (Vector2.Distance(rectTransform.anchoredPosition, Vector2.zero) < 50f / canvas.scaleFactor)
+            if (rect1.Overlaps(rect2))
             {
                 isMovingToCenter = true;
 
@@ -66,19 +80,32 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                     // 추가: 최초 3번만 누적하도록 설정
                     if (dragCount < 3)
                     {
+                        int AddScore = 0;
+
                         // 버튼마다 스코어 저장
-                        int perfectScore = CalculateScore("perfect", 10);
-                        int greatScore = CalculateScore("great", 5);
-                        int hmmScore = CalculateScore("hmm", 1);
+                        if (DialogSystem.instance.day == 0) //Jeniffer
+                        {
+                            AddScore = CalculateScore("Jeniffer", 1);
+                        }
+                        else if (DialogSystem.instance.day == 2)    ///Anne
+                        {
+                            AddScore = CalculateScore("Anne", 1);
+                        }
+                        else
+                        {
+                            Debug.Log("Not set day");
+                        }
 
                         // 최종 스코어 계산 및 누적
-                        totalScore += perfectScore + greatScore + hmmScore;
+                        totalScore += AddScore;
                         Debug.Log("Total Score: " + totalScore);
 
                         // 추가: 리스트 초기화
                         draggedButtons.Clear();
                     }
-                    
+
+                    DialogSystem.instance.Notelist[Note] += 1;
+
                     // 추가: 드래그 횟수 증가
                     dragCount++;
                 }
@@ -169,15 +196,18 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
             if (textAsset != null)
             {
                 // 파일 내용 읽기
-                string fileContents = textAsset.text;
+                string[] fileContents = textAsset.text.Split(",");
 
                 // 버튼의 이름과 파일 내용이 일치하는 경우에만 점수 부여
-                if (fileContents.Contains(buttonName))
+                for (int i = 0; i < fileContents.Length; i++)
                 {
-                    score += points;
-                }
+                    if (fileContents[i] == buttonName)
+                    {
+                        score += points;
 
-                Debug.Log(buttonName + " contents: " + fileContents);
+                        Debug.Log(buttonName + " contents: " + fileContents[i]);
+                    }
+                }
             }
             else
             {

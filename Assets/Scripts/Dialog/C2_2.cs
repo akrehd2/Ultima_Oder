@@ -31,7 +31,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("Look for clues in your order like just now.\r\nYou start working tomorrow. Good luck!", "제니퍼"));
 
-                    dialogTexts.Add(new DialogData("What a hectic day..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/What a hectic day..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("From tomorrow, I will make perfume in earnest. Let's cheer up and do well.", "Player_none", () => Show_NextButton()));
 
@@ -45,7 +45,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("손님의 주문에서 단서를 잘 찾아봐.\r\n내일부터 근무 시작이네. 잘 해보도록해!", "제니퍼"));
 
-                    dialogTexts.Add(new DialogData("정신없는 하루였다..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/정신없는 하루였다..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("내일부터 본격적으로 향수를 만들게 될거다.. 힘내서 잘 해보자.", "Player_none", () => Show_NextButton()));
 
@@ -66,7 +66,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("As you can see, it's a rose. You should be able to understand your intentions as well as you are now. Try your best!", "제니퍼", () => Hide_RoseE()));
 
-                    dialogTexts.Add(new DialogData("What a hectic day..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/What a hectic day..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("From tomorrow, I will make perfume in earnest. Let's cheer up and do well.", "Player_none", () => Show_NextButton()));
 
@@ -84,7 +84,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("보다시피 장미인 걸 알 수 있을거야. 지금처럼 손님의 의도를 잘 파악할 수 있어야해. 잘 해보도록 해!", "제니퍼", () => Hide_RoseK()));
 
-                    dialogTexts.Add(new DialogData("정신없는 하루였다..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/정신없는 하루였다..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("내일부터 본격적으로 향수를 만들게 될거다.. 힘내서 잘 해보자.", "Player_none", () => Show_NextButton()));
 
@@ -105,7 +105,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("As you can see, it's a rose. You should be able to understand your intentions as well as you are now. Try your best!", "제니퍼", () => Hide_RoseE()));
 
-                    dialogTexts.Add(new DialogData("What a hectic day..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/What a hectic day..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("From tomorrow, I will make perfume in earnest. Let's cheer up and do well.", "Player_none", () => Show_NextButton()));
 
@@ -123,7 +123,7 @@ public class C2_2 : MonoBehaviour
 
                     dialogTexts.Add(new DialogData("보다시피 장미인 걸 알 수 있을거야. 지금처럼 손님의 의도를 잘 파악할 수 있어야해. 잘 해보도록 해!", "제니퍼", () => Hide_RoseK()));
 
-                    dialogTexts.Add(new DialogData("정신없는 하루였다..", "Player_none"));
+                    dialogTexts.Add(new DialogData("/sound:Door/정신없는 하루였다..", "Player_none"));
 
                     dialogTexts.Add(new DialogData("내일부터 본격적으로 향수를 만들게 될거다.. 힘내서 잘 해보자.", "Player_none", () => Show_NextButton()));
 
