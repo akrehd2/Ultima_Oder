@@ -82,7 +82,7 @@ public class C2_4 : MonoBehaviour
                     DialogManager.Show(dialogTexts);
                 }
             }
-            else if (DialogSystem.instance.Result == 2)
+            else if (DialogSystem.instance.Result == 2 || DialogSystem.instance.Result == 3)
             {
                 if (DialogSystem.instance.Rang == 0)
                 {

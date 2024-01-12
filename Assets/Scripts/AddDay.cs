@@ -9,6 +9,8 @@ public class AddDay : MonoBehaviour
     public GameObject[] Hmms;
     public GameObject[] mades;
 
+    public GameObject Poop;
+
     private void Update()
     {
         for (int i = 0; i < DialogSystem.instance.MadePf.Length; i++)
@@ -35,9 +37,13 @@ public class AddDay : MonoBehaviour
         {
             DialogSystem.instance.Result = 1;
         }
-        else
+        else if (DragImage.totalScore == 0)
         {
             DialogSystem.instance.Result = 2;
+        }
+        else
+        {
+            DialogSystem.instance.Result = 3;
         }
 
         DragImage.totalScore = 0;
@@ -61,7 +67,7 @@ public class AddDay : MonoBehaviour
             Parfumes[0].SetActive(true);
             DialogSystem.instance.MadePf[0] = true;
         }
-        else if(DialogSystem.instance.day == 0 && DialogSystem.instance.Result != 0)
+        else if(DialogSystem.instance.day == 0 && DialogSystem.instance.Result != 0 && DialogSystem.instance.Result != 3)
         {
             Hmms[maxIndex].SetActive(true);
         }
@@ -77,6 +83,23 @@ public class AddDay : MonoBehaviour
         else if (DialogSystem.instance.day == 2 && DialogSystem.instance.Result == 2)
         {
             Hmms[maxIndex].SetActive(true);
+        }
+        else if (DialogSystem.instance.day == 4 && DialogSystem.instance.Result == 0)   //Olivia
+        {
+            Parfumes[3].SetActive(true);
+            DialogSystem.instance.MadePf[2] = true;
+        }
+        else if (DialogSystem.instance.day == 4 && DialogSystem.instance.Result == 1)
+        {
+            Parfumes[4].SetActive(true);
+        }
+        else if (DialogSystem.instance.day == 4 && DialogSystem.instance.Result == 2)
+        {
+            Hmms[maxIndex].SetActive(true);
+        }
+        else if(DialogSystem.instance.Result == 3)
+        {
+            Poop.SetActive(true);
         }
     }
 }
