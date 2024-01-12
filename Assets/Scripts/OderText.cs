@@ -43,5 +43,16 @@ public class OderText : MonoBehaviour
                 Otext.text = Oders[3];
             }
         }
+        else if (DialogSystem.instance.day == 4)
+        {
+            if (DialogSystem.instance.Rang == 0)
+            {
+                Otext.text = Oders[4];
+            }
+            else
+            {
+                Otext.text = Oders[5];
+            }
+        }
     }
 }

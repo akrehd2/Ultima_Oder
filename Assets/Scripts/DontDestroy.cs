@@ -9,6 +9,8 @@ public class DontDestroy : MonoBehaviour
 
     public GameObject all;
 
+    public GameObject Some;
+
     private void Awake()
     {
         if (instance != null)
@@ -30,5 +32,19 @@ public class DontDestroy : MonoBehaviour
         {
             all.gameObject.SetActive(false);
         }
+
+        if (SceneManager.GetActiveScene().name == ("TitleScene"))
+        {
+            Some.gameObject.SetActive(false);
+        }
+        else
+        {
+            Some.gameObject.SetActive(true);
+        }
+    }
+
+    public void Des()
+    {
+        Destroy(gameObject);
     }
 }

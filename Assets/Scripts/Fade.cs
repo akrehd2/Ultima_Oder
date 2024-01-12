@@ -44,6 +44,18 @@ public class Fade : MonoBehaviour
         {
             Date.text = "Day 3";
         }
+        else if (DialogSystem.instance.day < 8)
+        {
+            Date.text = "Day 4";
+        }
+        else if (DialogSystem.instance.day < 10)
+        {
+            Date.text = "Day 5";
+        }
+        else if (DialogSystem.instance.day < 12)
+        {
+            Date.text = "Day 6";
+        }
 
         Invoke("FadeOut", 2f);
     }

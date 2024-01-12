@@ -14,4 +14,9 @@ public class SceneManger : MonoBehaviour
     {
         SceneManager.LoadScene("MoveScene");
     }
+
+    public void GotoTitleScene()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
 }

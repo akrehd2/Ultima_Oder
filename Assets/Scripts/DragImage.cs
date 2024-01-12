@@ -91,6 +91,10 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
                         {
                             AddScore = CalculateScore("Anne", 1);
                         }
+                        else if (DialogSystem.instance.day == 4)    ///Anne
+                        {
+                            AddScore = CalculateScore("Olivia", 1);
+                        }
                         else
                         {
                             Debug.Log("Not set day");
@@ -102,6 +106,11 @@ public class DragImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
                         // 추가: 리스트 초기화
                         draggedButtons.Clear();
+                    }
+                    else
+                    {
+                        totalScore = -1;
+                        Debug.Log("Total Score: " + totalScore);
                     }
 
                     DialogSystem.instance.Notelist[Note] += 1;

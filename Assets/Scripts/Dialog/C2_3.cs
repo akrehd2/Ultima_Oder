@@ -18,12 +18,19 @@ public class C2_3 : MonoBehaviour
         {
             gameObject.SetActive(true);
 
-            Grandma.SetActive(true);
+            Invoke("Show_C", 3f);
         }
         else
         {
             gameObject.SetActive(false);
         }
+    }
+
+    public void Show_C()
+    {
+        Grandma.SetActive(true);
+
+        Grandma.GetComponent<AudioSource>().Play();
     }
 
     public void Start3day()
@@ -34,9 +41,7 @@ public class C2_3 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("Hello, this is Mystique Parfume, we make perfumes with the scent you want.", "Player_A"));
 
-            dialogTexts.Add(new DialogData("/speed:0.06/Hello. I stopped by once while passing by.. \nYou make perfumes according to the scent whatever I want..?", "앤"));
-
-            dialogTexts.Add(new DialogData("/speed:0.06/Ho-ho, the world has developed a lot.", "앤"));
+            dialogTexts.Add(new DialogData("/speed:0.06/Hello. I stopped by once while passing by.. \nYou make perfumes according to the scent whatever I want..? Ho-ho.", "앤"));
 
             dialogTexts.Add(new DialogData("/speed:0.06/Reminds me of the first time I bought a perfume... when I was a girl, I used it a lot because of my husband now..", "앤"));
 
@@ -54,9 +59,7 @@ public class C2_3 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("안녕하세요, 원하는 향으로 향수를 만들어주는 가게, 미스틱 파퓸입니다.", "Player_A"));
 
-            dialogTexts.Add(new DialogData("/speed:0.06/안녕하신가요. 지나가다가 한 번 들렀네만.. \n원하는대로 향대로 향수를 만들어준다고요..", "앤"));
-
-            dialogTexts.Add(new DialogData("/speed:0.06/호호 세상이 많이 발전했구먼.", "앤"));
+            dialogTexts.Add(new DialogData("/speed:0.06/안녕하신가요. 지나가다가 한 번 들렀네만.. \n원하는대로 향대로 향수를 만들어준다고요.. 호호.", "앤"));
 
             dialogTexts.Add(new DialogData("/speed:0.06/첫 향수를 샀을 때가 생각나네요.. 처녀 시절 적, 남편 때문에 많이 사용했었는데..", "앤"));
 
