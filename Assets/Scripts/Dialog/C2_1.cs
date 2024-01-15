@@ -12,6 +12,8 @@ public class C2_1 : MonoBehaviour
 
     public GameObject Button;
 
+    public GameObject Printer;
+
     private void Start()
     {
         if (DialogSystem.instance.day == 0)
@@ -65,7 +67,7 @@ public class C2_1 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("Now, let’s learn how to make perfume.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("There are six types of scents in our store. There are a total of 24 ingredients, but it would be better to put only 3 ingredients.", "제니퍼"));
+            dialogTexts.Add(new DialogData("There are six types of scents in our store. There are a total of 24 ingredients, but we generally use 3 ingredients.", "제니퍼"));
 
             dialogTexts.Add(new DialogData("If you click on the shelf divided by type to open it, the ingredients will be listed. If you look closely at each item, you will see the corresponding information.", "제니퍼"));
 
@@ -73,7 +75,7 @@ public class C2_1 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("I really like the scent of flowers./wait:0.3/ \r\nAt first, I hope romanticism will capture you,\r\nNext, it would be good if it was a flower that also had an earthy smell.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("I hope you can feel the cool scent naturally at the end.", "제니퍼", () => Show_Button()));
+            dialogTexts.Add(new DialogData("I hope you can feel the cool scent naturally at the end. \nI wish all scents had the same amount.", "제니퍼", () => Show_Button()));
 
             DialogManager.Show(dialogTexts);
         }
@@ -87,7 +89,7 @@ public class C2_1 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("자 그럼 향수를 만드는 법에 대해 배워보자.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("우리 가게에서 향의 종류는 여섯 가지로 분류하고 있어. 재료는 총 24가지 지만 오직 3개까지만 넣는게 좋을거야.", "제니퍼"));
+            dialogTexts.Add(new DialogData("우리 가게에서 노트의 종류는 여섯 가지로 분류하고 있어. 시트러스, 프루티, 플로럴, 스파이스, 그린, 우드. 재료는 훨씬 많지만 주로 세 종류만 써.", "제니퍼"));
 
             dialogTexts.Add(new DialogData("종류별로 나뉘어진 선반을 클릭해서 열어보면 재료들이 나열되어있을텐데, 하나하나 자세히 살펴보면 해당하는 정보가 보일거야.", "제니퍼"));
 
@@ -95,12 +97,35 @@ public class C2_1 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("저는 꽃향기가 너무 좋아요. /wait:0.3/\r\n처음에는 로맨틱함이 사로잡았으면 좋겠고요,\r\n다음으로는 흙 냄새도 풍기는 꽃이면 좋아요.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("마지막에는 시원한 향이 자연스럽게 느껴지면 좋겠네요.", "제니퍼", () => Show_Button()));
+            dialogTexts.Add(new DialogData("마지막에는 시원한 향이 자연스럽게 느껴지면 좋겠네요. \n모든 향이 비슷하게 났으면 좋겠어요.", "제니퍼", () => Show_Button()));
 
             DialogManager.Show(dialogTexts);
         }
     }
-    
+
+    public void click()
+    {
+        if(Printer.activeSelf == false)
+        {
+            if (DialogSystem.instance.Rang == 0)
+            {
+                var dialogTexts = new List<DialogData>();
+
+                dialogTexts.Add(new DialogData("Umm? You didn't make perfume yet?", "제니퍼"));
+
+                DialogManager.Show(dialogTexts);
+            }
+            else
+            {
+                var dialogTexts = new List<DialogData>();
+
+                dialogTexts.Add(new DialogData("응? 향수는 아직이야?", "제니퍼"));
+
+                DialogManager.Show(dialogTexts);
+            }
+        }
+    }
+
     void Show_Button()
     {
         Button.SetActive(true);

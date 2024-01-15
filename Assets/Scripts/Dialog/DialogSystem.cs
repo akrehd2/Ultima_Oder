@@ -20,7 +20,11 @@ public class DialogSystem : MonoBehaviour
 
     public bool[] MadePf;
 
+    public bool Endings = false;
+
     public List<int> Notelist = new List<int>() { 0, 0, 0, 0, 0, 0 };
+
+    public List<int> Oderlist = new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     private string savedHash;
 
@@ -58,6 +62,12 @@ public class DialogSystem : MonoBehaviour
     {
         day = 0;
         Result = 0;
+
+        for (int i = 0; i < MadePf.Length; i++)
+        {
+            MadePf[i] = false;
+        }
+
         SaveDay();
         UpdateDialogs();
     }
@@ -91,6 +101,18 @@ public class DialogSystem : MonoBehaviour
     {
         PlayerPrefs.SetInt("SavedDay", day);
         PlayerPrefs.SetInt("SavedResult", Result);
+
+        for (int i = 0; i < MadePf.Length; i++)
+        {
+            if (MadePf[i] == false)
+            {
+                PlayerPrefs.SetString("SavedMadePf" + i, "false");
+            }
+            else
+            {
+                PlayerPrefs.SetString("SavedMadePf" + i, "true");
+            }
+        }
         PlayerPrefs.Save();
         Debug.Log("Day and Result saved: " + day + ", " + Result);
            
@@ -121,6 +143,21 @@ public class DialogSystem : MonoBehaviour
         {
             day = PlayerPrefs.GetInt("SavedDay");
             Result = PlayerPrefs.GetInt("SavedResult");
+
+            for (int i = 0; i < MadePf.Length; i++)
+            {
+                string s = PlayerPrefs.GetString("SavedMadePf" + i);
+
+                if (s == "false")
+                {
+                    MadePf[i] = false;
+                }
+                else
+                {
+                    MadePf[i] = true;
+                }
+            }
+
             Debug.Log("Day and Result loaded: " + day + ", " + Result);
         }
         else

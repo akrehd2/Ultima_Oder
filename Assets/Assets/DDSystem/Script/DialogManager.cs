@@ -210,18 +210,19 @@ namespace Doublsb.Dialog
             _lastDelay = 0.1f;
             Printer_Text.text = string.Empty;
 
-            if (_current_Character.name == "제니퍼" || _current_Character.name == "제니퍼_C")
+            if (_current_Character.name == "제니퍼" || _current_Character.name == "제니퍼_C" || _current_Character.name == "End")
             {
                 if(DialogSystem.instance.Rang==0)
                 {
-                    Name_Text.text = "Jeniffer";
+                    Name_Text.text = "Chloé";
                 }
                 else
                 {
-                    Name_Text.text = "제니퍼";
+                    Name_Text.text = "클로에";
                 }
             }
-            else if(_current_Character.name == "Player" || _current_Character.name == "Player_none" || _current_Character.name == "Player_A" || _current_Character.name == "Player_O")
+            else if(_current_Character.name == "Player" || _current_Character.name == "Player_none" || _current_Character.name == "Player_A" || _current_Character.name == "Player_O"
+                     || _current_Character.name == "Player_T" || _current_Character.name == "Player_R" || _current_Character.name == "Player_?")
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
@@ -236,22 +237,44 @@ namespace Doublsb.Dialog
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
-                    Name_Text.text = "Anne";
+                    Name_Text.text = "Sophie";
                 }
                 else
                 {
-                    Name_Text.text = "앤";
+                    Name_Text.text = "소피";
                 }
             }
             else if (_current_Character.name == "올리비아" || _current_Character.name == "올리비아_C")
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
-                    Name_Text.text = "Olivia";
+                    Name_Text.text = "Sang Eun";
                 }
                 else
                 {
-                    Name_Text.text = "올리비아";
+                    Name_Text.text = "상은";
+                }
+            }
+            else if (_current_Character.name == "토미" || _current_Character.name == "토미_C")
+            {
+                if (DialogSystem.instance.Rang == 0)
+                {
+                    Name_Text.text = "Louis";
+                }
+                else
+                {
+                    Name_Text.text = "루이";
+                }
+            }
+            else if (_current_Character.name == "테오" || _current_Character.name == "테오_C")
+            {
+                if (DialogSystem.instance.Rang == 0)
+                {
+                    Name_Text.text = "Théo";
+                }
+                else
+                {
+                    Name_Text.text = "테오";
                 }
             }
 

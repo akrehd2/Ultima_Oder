@@ -23,6 +23,8 @@ public class C2_2 : MonoBehaviour
 
             if (DialogSystem.instance.Result == 0)
             {
+                Zoom.instance.Shaking = true;
+
                 if (DialogSystem.instance.Rang == 0)
                 {
                     var dialogTexts = new List<DialogData>();
