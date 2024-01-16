@@ -80,7 +80,7 @@ public class Zoom : MonoBehaviour
                         }
 
                         Charic.transform.position += new Vector3(0, -0.606f, 0);
-                        Desk.transform.position += new Vector3(0, -1.606f, 0);
+                        Desk.transform.position += new Vector3(0, -12.606f, 0);
                     }
                     else
                     {
@@ -108,7 +108,7 @@ public class Zoom : MonoBehaviour
                         }
 
                         Charic.transform.position += new Vector3(0, 0.606f, 0);
-                        Desk.transform.position += new Vector3(0, 1.606f, 0);
+                        Desk.transform.position += new Vector3(0, 12.606f, 0);
                     }
                     else
                     {
