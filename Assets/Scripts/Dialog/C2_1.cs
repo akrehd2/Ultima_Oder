@@ -57,49 +57,52 @@ public class C2_1 : MonoBehaviour
 
     public void Event1()
     {
-        if (DialogSystem.instance.Rang == 0)
+        if (Printer.activeSelf == false)
         {
-            var dialogTexts = new List<DialogData>();
+            if (DialogSystem.instance.Rang == 0)
+            {
+                var dialogTexts = new List<DialogData>();
 
-            dialogTexts.Add(new DialogData("Welcome to Mystique Parfume.", "Player"));
+                dialogTexts.Add(new DialogData("Welcome to Mystique Parfume.", "Player"));
 
-            dialogTexts.Add(new DialogData("/size:up/Well done!", "제니퍼"));
+                dialogTexts.Add(new DialogData("/size:up/Well done!", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("Now, let’s learn how to make perfume.", "제니퍼"));
+                dialogTexts.Add(new DialogData("Now, let’s learn how to make perfume.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("There are six types of scents in our store. There are a total of 24 ingredients, but we generally use 3 ingredients.", "제니퍼"));
+                dialogTexts.Add(new DialogData("There are six types of scents in our store. There are a total of 24 ingredients, but we generally use 3 ingredients.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("If you click on the shelf divided by type to open it, the ingredients will be listed. If you look closely at each item, you will see the corresponding information.", "제니퍼"));
+                dialogTexts.Add(new DialogData("If you click on the shelf divided by type to open it, the ingredients will be listed. If you look closely at each item, you will see the corresponding information.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("Now, let’s take perfume orders in earnest. You need to understand the desired scent through conversation with the customer. \nI'll pretend I'm a customer.", "제니퍼"));
+                dialogTexts.Add(new DialogData("Now, let’s take perfume orders in earnest. You need to understand the desired scent through conversation with the customer. \nI'll pretend I'm a customer.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("I really like the scent of flowers./wait:0.3/ \r\nAt first, I hope romanticism will capture you,\r\nNext, it would be good if it was a flower that also had an earthy smell.", "제니퍼"));
+                dialogTexts.Add(new DialogData("I really like the scent of flowers./wait:0.3/ \r\nAt first, I hope romanticism will capture you,\r\nNext, it would be good if it was a flower that also had an earthy smell.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("I hope you can feel the cool scent naturally at the end. \nI wish all scents had the same amount.", "제니퍼", () => Show_Button()));
+                dialogTexts.Add(new DialogData("I hope you can feel the cool scent naturally at the end. \nI wish all scents had the same amount.", "제니퍼", () => Show_Button()));
 
-            DialogManager.Show(dialogTexts);
-        }
-        else
-        {
-            var dialogTexts = new List<DialogData>();
+                DialogManager.Show(dialogTexts);
+            }
+            else
+            {
+                var dialogTexts = new List<DialogData>();
 
-            dialogTexts.Add(new DialogData("어서오세요, 미스틱 파퓸입니다.", "Player"));
+                dialogTexts.Add(new DialogData("어서오세요, 미스틱 파퓸입니다.", "Player"));
 
-            dialogTexts.Add(new DialogData("/size:up/잘했어!", "제니퍼"));
+                dialogTexts.Add(new DialogData("/size:up/잘했어!", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("자 그럼 향수를 만드는 법에 대해 배워보자.", "제니퍼"));
+                dialogTexts.Add(new DialogData("자 그럼 향수를 만드는 법에 대해 배워보자.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("우리 가게에서 노트의 종류는 여섯 가지로 분류하고 있어. 시트러스, 프루티, 플로럴, 스파이스, 그린, 우드. 재료는 훨씬 많지만 주로 세 종류만 써.", "제니퍼"));
+                dialogTexts.Add(new DialogData("우리 가게에서 노트의 종류는 여섯 가지로 분류하고 있어. 시트러스, 프루티, 플로럴, 스파이스, 그린, 우드. 재료는 훨씬 많지만 주로 세 종류만 써.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("종류별로 나뉘어진 선반을 클릭해서 열어보면 재료들이 나열되어있을텐데, 하나하나 자세히 살펴보면 해당하는 정보가 보일거야.", "제니퍼"));
+                dialogTexts.Add(new DialogData("종류별로 나뉘어진 선반을 클릭해서 열어보면 재료들이 나열되어있을텐데, 하나하나 자세히 살펴보면 해당하는 정보가 보일거야.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("그럼 본격적으로 향수 주문을 받아보자. 손님과의 대화를 통해 원하는 향을 잘 파악해야해. \n내가 손님인 척 해볼게.", "제니퍼"));
+                dialogTexts.Add(new DialogData("그럼 본격적으로 향수 주문을 받아보자. 손님과의 대화를 통해 원하는 향을 잘 파악해야해. \n내가 손님인 척 해볼게.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("저는 꽃향기가 너무 좋아요. /wait:0.3/\r\n처음에는 로맨틱함이 사로잡았으면 좋겠고요,\r\n다음으로는 흙 냄새도 풍기는 꽃이면 좋아요.", "제니퍼"));
+                dialogTexts.Add(new DialogData("저는 꽃향기가 너무 좋아요. /wait:0.3/\r\n처음에는 로맨틱함이 사로잡았으면 좋겠고요,\r\n다음으로는 흙 냄새도 풍기는 꽃이면 좋아요.", "제니퍼"));
 
-            dialogTexts.Add(new DialogData("마지막에는 시원한 향이 자연스럽게 느껴지면 좋겠네요. \n모든 향이 비슷하게 났으면 좋겠어요.", "제니퍼", () => Show_Button()));
+                dialogTexts.Add(new DialogData("마지막에는 시원한 향이 자연스럽게 느껴지면 좋겠네요. \n모든 향이 비슷하게 났으면 좋겠어요.", "제니퍼", () => Show_Button()));
 
-            DialogManager.Show(dialogTexts);
+                DialogManager.Show(dialogTexts);
+            }
         }
     }
 

@@ -7,6 +7,7 @@ public class Zoom : MonoBehaviour
     public static Zoom instance;
     public GameObject Charic;
     public GameObject Printer;
+    public GameObject Desk;
 
     public bool In;
     public bool Out;
@@ -14,6 +15,7 @@ public class Zoom : MonoBehaviour
     float timer = 0;
 
     public bool Shaking;
+    public float ShakP;
 
     [SerializeField]
     private float m_roughness;      //°ÅÄ¥±â Á¤µµ
@@ -34,7 +36,7 @@ public class Zoom : MonoBehaviour
             transform.position = new Vector3(
                 Mathf.PerlinNoise(tick, 0) - .5f,
                 Mathf.PerlinNoise(0, tick) - .5f,
-                0f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
+                -80f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
 
             yield return null;
         }
@@ -50,7 +52,7 @@ public class Zoom : MonoBehaviour
     {
         if (Shaking)
         {
-            StartCoroutine(Shake(1f));
+            StartCoroutine(Shake(ShakP));
             Shaking = false;
         }
 
@@ -69,13 +71,16 @@ public class Zoom : MonoBehaviour
                         if (Charic.transform.localScale.x < 1.67f)
                         {
                             Charic.transform.localScale += new Vector3(0.033f, 0.033f, 0.033f);
+                            Desk.transform.localScale += new Vector3(0.033f, 0.033f, 0.033f);
                         }
                         else
                         {
                             Charic.transform.localScale = new Vector3(1.67f, 1.67f, 1.67f);
+                            Desk.transform.localScale = new Vector3(1.67f, 1.67f, 1.67f);
                         }
 
                         Charic.transform.position += new Vector3(0, -0.606f, 0);
+                        Desk.transform.position += new Vector3(0, -1.606f, 0);
                     }
                     else
                     {
@@ -94,13 +99,16 @@ public class Zoom : MonoBehaviour
                         if (Charic.transform.localScale.x > 1)
                         {
                             Charic.transform.localScale -= new Vector3(0.033f, 0.033f, 0.033f);
+                            Desk.transform.localScale -= new Vector3(0.033f, 0.033f, 0.033f);
                         }
                         else
                         {
                             Charic.transform.localScale = Vector3.one;
+                            Desk.transform.localScale = Vector3.one;
                         }
 
                         Charic.transform.position += new Vector3(0, 0.606f, 0);
+                        Desk.transform.position += new Vector3(0, 1.606f, 0);
                     }
                     else
                     {

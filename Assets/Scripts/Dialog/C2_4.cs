@@ -10,6 +10,8 @@ public class C2_4 : MonoBehaviour
 
     public GameObject Button;
 
+    public GameObject perfect;
+
     private void OnEnable()
     {
         if (DialogSystem.instance.day == 3)
@@ -18,6 +20,10 @@ public class C2_4 : MonoBehaviour
 
             if (DialogSystem.instance.Result == 0)
             {
+                Zoom.instance.ShakP = 1f;
+                Zoom.instance.Shaking = true;
+                perfect.SetActive(true);
+
                 if (DialogSystem.instance.Rang == 0)
                 {
                     var dialogTexts = new List<DialogData>();
@@ -127,5 +133,6 @@ public class C2_4 : MonoBehaviour
     void Show_Button()
     {
         Button.SetActive(true);
+        perfect.SetActive(false);
     }
 }

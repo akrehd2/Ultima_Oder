@@ -11,6 +11,12 @@ public class DontDestroy : MonoBehaviour
 
     public GameObject Some;
 
+    public Texture2D cursorTextureA;
+    public Texture2D cursorTextureB;
+
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+
     private void Awake()
     {
         if (instance != null)
@@ -24,6 +30,17 @@ public class DontDestroy : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetMouseButton(0))
+        {
+            Cursor.SetCursor(cursorTextureB, hotSpot, cursorMode);
+        }
+        else
+        {
+            hotSpot.x = cursorTextureA.width / 2;
+
+            Cursor.SetCursor(cursorTextureA, hotSpot, cursorMode);
+        }
+
         if (SceneManager.GetActiveScene().name == ("GameScene"))
         {
             all.gameObject.SetActive(true);

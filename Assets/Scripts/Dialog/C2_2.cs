@@ -13,6 +13,8 @@ public class C2_2 : MonoBehaviour
     public GameObject RoseE;
     public GameObject RoseK;
 
+    public GameObject perfect;
+
     private void OnEnable()
     {
         if (DialogSystem.instance.day == 1)
@@ -23,7 +25,9 @@ public class C2_2 : MonoBehaviour
 
             if (DialogSystem.instance.Result == 0)
             {
+                Zoom.instance.ShakP = 1f;
                 Zoom.instance.Shaking = true;
+                perfect.SetActive(true);
 
                 if (DialogSystem.instance.Rang == 0)
                 {
@@ -142,6 +146,7 @@ public class C2_2 : MonoBehaviour
     private void Show_NextButton()
     {
         NextButton.SetActive(true);
+        perfect.SetActive(false);
     }
     private void Show_RoseE()
     {
