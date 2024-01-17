@@ -33,14 +33,14 @@ public class Zoom : MonoBehaviour
             elapsed += Time.deltaTime / halfDuration;
 
             tick += Time.deltaTime * m_roughness;
-            transform.position = new Vector3(
+            Camera.main.transform.position = new Vector3(
                 Mathf.PerlinNoise(tick, 0) - .5f,
                 Mathf.PerlinNoise(0, tick) - .5f,
-                -80f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
+                -50f) * m_magnitude * Mathf.PingPong(elapsed, halfDuration);
 
             yield return null;
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, 1, -10f);
     }
 
     private void Awake()

@@ -63,7 +63,9 @@ public class C2_5 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("Oh, that's right... I don't like anything else, I only like flowers. \nSo, I would love it if there was a hint of purple floral scent in the beginning.", "올리비아"));
 
-            dialogTexts.Add(new DialogData("And as I smell the fragrance more, I would like to experience an indescribable feeling, like a contradictory scent...", "올리비아"));
+            dialogTexts.Add(new DialogData("And as I smell the fragrance more, I would like to experience an indescribable feeling, like a contradictory scent... Include many contradictory a lot of scents that match my identity.", "올리비아"));
+
+            dialogTexts.Add(new DialogData("Include many contradictory a lot of scents that match my identity.", "올리비아"));
 
             dialogTexts.Add(new DialogData("Lastly, I will give you a specific scent: lavender. Make it smell strongly of lavender. Can you do it well? I've helped you a lot, right?", "올리비아", () => Show_Button()));
 
@@ -95,7 +97,9 @@ public class C2_5 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("아 맞다.. 전 다른건 싫고 오로지 꽃만 좋아해요. \n그러니까, 제일 처음에는 보라색 꽃 향기가 살짝 났으면 좋겠어요. \n그리고 향기를 맡을 수록 더 알 수 없는 느낌을 엄청 받으면 좋겠는데.", "올리비아"));
 
-            dialogTexts.Add(new DialogData("마치 모순적인 향기.. 마지막으로 나는 향은 딱 정해드릴게요. 라벤더. 라벤더 향이 많이 나게 부탁해요. \n잘 할 수 있겠죠? 편의 많이 봐드린거에요 저?", "올리비아", () => Show_Button()));
+            dialogTexts.Add(new DialogData("마치 모순적인 향기.. \n제 정체성에 맞는 모순적인 향도 많이 내주세요.", "올리비아"));
+
+            dialogTexts.Add(new DialogData("마지막으로 나는 향은 딱 정해드릴게요. 라벤더. 라벤더 향이 많이 나게 부탁해요. \n잘 할 수 있겠죠? 편의 많이 봐드린거에요 저?", "올리비아", () => Show_Button()));
 
             DialogManager.Show(dialogTexts);
         }

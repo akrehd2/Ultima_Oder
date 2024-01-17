@@ -11,7 +11,9 @@ public class ButtonHoverText2 : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Image image;
     public GameObject hoverObject; // 나타날 게임 오브젝트
 
+    [TextArea]
     public string originalTextE; // 원래 텍스트를 저장하는 변수
+    [TextArea]
     public string originalTextK; // 원래 텍스트를 저장하는 변수
     public string nameTextK; // 원래 텍스트를 저장하는 변수
     public Sprite sprite;
@@ -19,7 +21,7 @@ public class ButtonHoverText2 : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void Update()
     {
-        hoverObject.transform.position = Input.mousePosition + new Vector3(0, -250, 0);
+        hoverObject.transform.position = Input.mousePosition + new Vector3(0, -285, 0);
 
         image.gameObject.transform.position = new Vector3(190, 180, 0);
 
@@ -50,7 +52,7 @@ public class ButtonHoverText2 : MonoBehaviour, IPointerEnterHandler, IPointerExi
             NameText.text = nameTextK;
         }
 
-        hoverObject.GetComponent<RectTransform>().sizeDelta = new Vector2(350, 250 + hoverText.text.Length);
+        hoverObject.GetComponent<RectTransform>().sizeDelta = new Vector2(350, 285 + hoverText.text.Length);
     }
 
     // 호버 종료 시 호출될 메서드
