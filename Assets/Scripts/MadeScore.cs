@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UI;
+using TMPro;
+using static UnityEngine.Rendering.PostProcessing.HistogramMonitor;
 
 public class MadeScore : MonoBehaviour
 {
@@ -13,7 +14,12 @@ public class MadeScore : MonoBehaviour
     public GameObject Fill;
     public GameObject Spoit;
 
+    public TextMeshProUGUI Per;
+
     public float Timer;
+    public float Speed;
+
+    public int Changer;
 
     public int Amount;
 
@@ -27,6 +33,8 @@ public class MadeScore : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        Speed = 0.05f;
     }
 
     private void Update()
@@ -35,9 +43,11 @@ public class MadeScore : MonoBehaviour
 
         Spoit.GetComponent<Image>().fillAmount = 1 - (float)Amount / 100;
 
-        if(isClick)
+        Per.text = Amount + "%";
+
+        if (isClick)
         {
-            if(Timer > 0.05f)
+            if(Timer > Speed)
             {
                 if (Amount < 100)
                 {
@@ -46,9 +56,16 @@ public class MadeScore : MonoBehaviour
                     DialogSystem.instance.Oderlist[Oder] += 1;
                 }
 
+                Changer += 1;
                 Timer = 0;
             }
             Timer += Time.deltaTime;
+        }
+
+        if(Changer >= 25)
+        {
+            Speed = Random.Range(0.01f, 0.1f);
+            Changer = 0;
         }
     }
 

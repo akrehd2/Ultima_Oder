@@ -58,7 +58,7 @@ public class C2_7 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("My grandmother recently got burned while making carrot soup for me. If there are ingredients that are good for burns, please add them generously, generously!!", "토미"));
 
-            dialogTexts.Add(new DialogData("Oh! And my grandmother is very worried because she's been losing a lot of hair lately. It would be great if you could add a scent that helps with hair care in moderation!", "토미"));
+            dialogTexts.Add(new DialogData("Oh! And my grandmother is very worried because she's been losing a lot of hair lately. It would be great if you could add a scent that helps with hair care enough!", "토미"));
 
             dialogTexts.Add(new DialogData("And finally, please give it a soft woody fragrance as a finishing touch! Because she likes woody smell.", "토미"));
 

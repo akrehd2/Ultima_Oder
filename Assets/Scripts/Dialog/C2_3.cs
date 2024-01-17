@@ -53,7 +53,7 @@ public class C2_3 : MonoBehaviour
 
             dialogTexts.Add(new DialogData("/speed:0.06/but are there cases where food fragrances are used? It would be great if there could be strong scents of carrots and cucumbers.", "¾Ø"));
 
-            dialogTexts.Add(new DialogData("/speed:0.06/And maybe adding a scent that stimulates the appetite and makes the body feel more relaxed?", "¾Ø", () => Show_Button()));
+            dialogTexts.Add(new DialogData("/speed:0.06/And maybe adding a scent that stimulates the appetite and makes the body feel more relaxed slightly??", "¾Ø", () => Show_Button()));
 
             DialogManager.Show(dialogTexts);
         }

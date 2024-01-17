@@ -15,6 +15,8 @@ public class C2_2 : MonoBehaviour
 
     public GameObject perfect;
 
+    public GameObject hmm;
+
     private void OnEnable()
     {
         if (DialogSystem.instance.day == 1)
@@ -33,7 +35,7 @@ public class C2_2 : MonoBehaviour
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("/emote:Happy//size:up/You're the best! /size:init/I think you're talented!\r\nWhen customers order perfumes, you have to be able to meet their needs.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:Perfect2//emote:Happy//size:up/You're the best! /size:init/I think you're talented!\r\nWhen customers order perfumes, you have to be able to meet their needs.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("Look for clues in your order like just now.\r\nYou start working tomorrow. Good luck!", "제니퍼"));
 
@@ -47,7 +49,7 @@ public class C2_2 : MonoBehaviour
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("/emote:Happy//size:up/최고야! /size:init/재능이 있는데?\r\n손님이 향수를 주문할 때 넌 지금처럼 손님들의 니즈를 맞출 수 있어야해.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:Perfect2//emote:Happy//size:up/최고야! /size:init/재능이 있는데?\r\n손님이 향수를 주문할 때 넌 지금처럼 손님들의 니즈를 맞출 수 있어야해.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("손님의 주문에서 단서를 잘 찾아봐.\r\n내일부터 근무 시작이네. 잘 해보도록해!", "제니퍼"));
 
@@ -64,7 +66,7 @@ public class C2_2 : MonoBehaviour
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("It's Not Bad. You have an understanding of perfumes.\r\nBut, when the customer order perfume, you have to cater to customers' needs.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:Great2/It's Not Bad. You have an understanding of perfumes.\r\nBut, when the customer order perfume, you have to cater to customers' needs.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("To do that, we need to be able to find clues in your order, right?\r\nLet's take a good look at the order I just made.", "제니퍼"));
 
@@ -82,7 +84,7 @@ public class C2_2 : MonoBehaviour
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("나쁘진 않아, 향수에 대한 이해도가 있어.\r\n하지만, 손님이 향수를 주문할 때 넌 손님들의 니즈를 맞춰야해.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:Great2/나쁘진 않아, 향수에 대한 이해도가 있어.\r\n하지만, 손님이 향수를 주문할 때 넌 손님들의 니즈를 맞춰야해.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("그러려면 손님의 주문에서 단서를 잘 찾을 수 있어야겠지?\r\n방금 내가 한 주문을 잘 살펴보자.", "제니퍼"));
 
@@ -99,11 +101,15 @@ public class C2_2 : MonoBehaviour
             }
             else if (DialogSystem.instance.Result == 2 || DialogSystem.instance.Result == 3)
             {
+                Zoom.instance.ShakP = 0.5f;
+                Zoom.instance.Shaking = true;
+                hmm.SetActive(true);
+
                 if (DialogSystem.instance.Rang == 0)
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("..What are you doing? You just pressed it, right?\r\nNow, when the customer order perfume, you have to cater to customers' needs.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:woo/..What are you doing? You just pressed it, right?\r\nNow, when the customer order perfume, you have to cater to customers' needs.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("To do that, we need to be able to find clues in your order, right?\r\nLet's take a good look at the order I just made.", "제니퍼"));
 
@@ -121,7 +127,7 @@ public class C2_2 : MonoBehaviour
                 {
                     var dialogTexts = new List<DialogData>();
 
-                    dialogTexts.Add(new DialogData("..뭐하니? 막 눌렀지?\r\n자, 손님이 향수를 주문할 때 넌 손님들의 니즈를 맞춰야해.", "제니퍼"));
+                    dialogTexts.Add(new DialogData("/sound:woo/..뭐하니? 막 눌렀지?\r\n자, 손님이 향수를 주문할 때 넌 손님들의 니즈를 맞춰야해.", "제니퍼"));
 
                     dialogTexts.Add(new DialogData("그러려면 손님의 주문에서 단서를 잘 찾을 수 있어야겠지?\r\n방금 내가 한 주문을 잘 살펴보자.", "제니퍼"));
 
@@ -147,6 +153,7 @@ public class C2_2 : MonoBehaviour
     {
         NextButton.SetActive(true);
         perfect.SetActive(false);
+        hmm.SetActive(false);
     }
     private void Show_RoseE()
     {

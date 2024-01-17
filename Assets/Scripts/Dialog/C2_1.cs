@@ -1,10 +1,7 @@
 using Doublsb.Dialog;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEditor.ShaderData;
 
 public class C2_1 : MonoBehaviour
 {
