@@ -83,10 +83,7 @@ public class C2_8 : MonoBehaviour
             }
             else if (DialogSystem.instance.Result == 2 || DialogSystem.instance.Result == 3)
             {
-                Zoom.instance.ShakP = 2f;
-                Zoom.instance.Shaking = true;
-                hmm.SetActive(true);
-                Rui.SetBool("Up2", true);
+                Invoke("Ruis", 0.1f);
 
                 if (DialogSystem.instance.Rang == 0)
                 {
@@ -116,11 +113,19 @@ public class C2_8 : MonoBehaviour
         }
     }
 
+    void Ruis()
+    {
+        Zoom.instance.ShakP = 2f;
+        Zoom.instance.Shaking = true;
+        hmm.SetActive(true);
+        Rui.SetInteger("PLZ", 1);
+    }
+
     void Show_Button()
     {
         Button.SetActive(true);
         perfect.SetActive(false);
         hmm.SetActive(false);
-        Rui.SetBool("Up2", false);
+        Rui.SetInteger("PLZ", 0);
     }
 }

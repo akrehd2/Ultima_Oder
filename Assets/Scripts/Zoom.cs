@@ -112,6 +112,9 @@ public class Zoom : MonoBehaviour
                     }
                     else
                     {
+                        Desk.transform.position = new Vector3(Desk.transform.position.x, 95.10001f, Desk.transform.position.z);
+                        Camera.main.orthographicSize = 5;
+
                         Out = false;
                     }
                 }

@@ -10,17 +10,20 @@ public class ac : MonoBehaviour
 
     private void Update()
     {
-        if(Printer.activeSelf == true)
+        if (Camera.main.orthographicSize == 5)
         {
-            Burron[0].SetActive(false);
-            Burron[1].SetActive(false);
-            Burron[2].SetActive(false);
-        }
-        else
-        {
-            Burron[0].SetActive(true);
-            Burron[1].SetActive(true);
-            Burron[2].SetActive(true);
+            if (Printer.activeSelf == true)
+            {
+                Burron[0].SetActive(false);
+                Burron[1].SetActive(false);
+                Burron[2].SetActive(false);
+            }
+            else
+            {
+                Burron[0].SetActive(true);
+                Burron[1].SetActive(true);
+                Burron[2].SetActive(true);
+            }
         }
     }
 }

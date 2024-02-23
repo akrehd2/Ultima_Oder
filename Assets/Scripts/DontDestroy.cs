@@ -13,6 +13,9 @@ public class DontDestroy : MonoBehaviour
 
     public Texture2D cursorTextureA;
     public Texture2D cursorTextureB;
+    public Texture2D cursorTextureC;
+
+    public bool cursorC;
 
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
@@ -30,9 +33,28 @@ public class DontDestroy : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Camera.main.orthographicSize != 3)
+        {
+            cursorC = false;
+        }
+
+        if (Input.GetMouseButton(0) && cursorC == false)
         {
             Cursor.SetCursor(cursorTextureB, hotSpot, cursorMode);
+        }
+        else if (Input.GetMouseButton(0) && cursorC == true)
+        {
+            hotSpot.x = cursorTextureC.width / 2;
+            hotSpot.y = cursorTextureC.height / 2.4f;
+
+            Cursor.SetCursor(cursorTextureC, hotSpot, cursorMode);
+        }
+        else if(cursorC)
+        {
+            hotSpot.x = cursorTextureC.width / 2;
+            hotSpot.y = cursorTextureC.height / 2;
+
+            Cursor.SetCursor(cursorTextureC, hotSpot, cursorMode);
         }
         else
         {
@@ -58,6 +80,16 @@ public class DontDestroy : MonoBehaviour
         {
             Some.gameObject.SetActive(true);
         }
+    }
+
+    public void Con()
+    {
+        cursorC = true;
+    }
+
+    public void Coff()
+    {
+        cursorC = false;
     }
 
     public void Des()
