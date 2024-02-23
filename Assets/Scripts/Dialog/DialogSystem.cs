@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements.Experimental;
 
 public class DialogSystem : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class DialogSystem : MonoBehaviour
 
     public bool[] MadePf;
 
-    public bool Endings = false;
+    public bool Ending;
 
     public List<int> Notelist = new List<int>() { 0, 0, 0, 0, 0, 0 };
 
@@ -31,6 +32,7 @@ public class DialogSystem : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
         LoadDay();
     }
 
@@ -56,6 +58,16 @@ public class DialogSystem : MonoBehaviour
         {
             SaveDay();
         }
+    }
+
+    public void GodsOn()
+    {
+        god.instance.Clicker = true;
+    }
+
+    public void GodsOff()
+    {
+        god.instance.Clicker = false;
     }
 
     public void OnNewButtonClicked()

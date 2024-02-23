@@ -12,26 +12,17 @@ public class Fade : MonoBehaviour
     public bool isFadingOut;
 
     public TextMeshProUGUI Date;
+    public Text Date2;
 
     public GameObject Child;
-
-    public Image EndingImg;
 
     private void Awake()
     {
         FadeOut();
     }
-
     private void Update()
     {
-        if (Child.activeSelf == true)
-        {
-            if (DialogSystem.instance.Endings == true)
-            {
-                StartCoroutine(FadeInEnd());
-                DialogSystem.instance.Endings = false;
-            }
-        }
+        Date2.text = Date.text;
     }
 
     public void StartDay()
@@ -39,9 +30,9 @@ public class Fade : MonoBehaviour
         Date.text = "Day 1";
     }
 
-    public void Ended()
+    public void StartDay2()
     {
-        StartCoroutine(FadeInEnd());
+        Date.text = "첫째 날";
     }
 
     public void ChangeDay()
@@ -193,31 +184,5 @@ public class Fade : MonoBehaviour
         isFadingOut = false;
         FadeImage.gameObject.SetActive(false);
         Date.gameObject.SetActive(false);
-    }
-
-    public IEnumerator FadeInEnd()
-    {
-        // 추가: FadeOutButton 코루틴이 이미 실행 중이라면 중단
-        if (isFadingIn)
-        {
-            yield break;
-        }
-
-        isFadingIn = true;
-        FadeImage.gameObject.SetActive(true);
-        EndingImg.gameObject.SetActive(true);
-
-        float duration = 2f; // 투명해지는 데 걸리는 시간 (초)
-        float elapsedTime = 0f;
-        Color startingColor = FadeImage.color;
-        Color startingColor2 = EndingImg.color;
-
-        while (elapsedTime < duration)
-        {
-            EndingImg.color = Color.Lerp(startingColor2, new Color(1, 1, 1, 1), elapsedTime / (duration * 6));
-            FadeImage.color = Color.Lerp(startingColor, new Color(0, 0, 0, 1), elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
     }
 }

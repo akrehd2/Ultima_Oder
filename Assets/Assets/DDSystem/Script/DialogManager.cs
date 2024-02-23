@@ -248,7 +248,7 @@ namespace Doublsb.Dialog
             {
                 if (DialogSystem.instance.Rang == 0)
                 {
-                    Name_Text.text = "Sang Eun";
+                    Name_Text.text = "SangEun";
                 }
                 else
                 {

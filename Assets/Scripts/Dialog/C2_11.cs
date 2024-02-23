@@ -11,7 +11,15 @@ public class C2_11 : MonoBehaviour
 
     public GameObject Cleo;
 
-    public GameObject Fade;
+    public GameObject Ending;
+
+    public GameObject Button;
+
+    public GameObject[] Charic;
+
+    public GameObject perfect;
+
+    public GameObject hmm;
 
     private void OnEnable()
     {
@@ -91,6 +99,8 @@ public class C2_11 : MonoBehaviour
 
     void Show_EndScore()
     {
+        Invoke("Show_button", 0.1f);
+
         int s = 0;
 
         for (int i = 0; i < DialogSystem.instance.MadePf.Length; i++)
@@ -103,11 +113,15 @@ public class C2_11 : MonoBehaviour
 
         if(s >= 5)
         {
+            Zoom.instance.ShakP = 1f;
+            Zoom.instance.Shaking = true;
+            perfect.SetActive(true);
+
             if (DialogSystem.instance.Rang == 0)
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("/emote:Perfect//size:up/Perfect score! /size:init/You did a good job! I didn't teach you much, but I'm very proud. You can start working as a full-time employee tomorrow!", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("/emote:Perfect//size:up/Perfect score! /size:init/You did a good job! I didn't teach you much, but I'm very proud. You can start working as a full-time employee tomorrow!", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
@@ -115,7 +129,7 @@ public class C2_11 : MonoBehaviour
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("/emote:Perfect//size:up/만점이네! /size:init/잘해줬구나! 별로 가르쳐준 것도 없는데 굉장히 뿌듯하네. 내일부터 바로 정직원으로 일해도 되겠어!", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("/emote:Perfect//size:up/만점이네! /size:init/잘해줬구나! 별로 가르쳐준 것도 없는데 굉장히 뿌듯하네. 내일부터 바로 정직원으로 일해도 되겠어!", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
@@ -126,7 +140,7 @@ public class C2_11 : MonoBehaviour
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("It's more than half, If you work a little more, \nyour skills will improve, right? \nI'll keep an eye on you a little longer, so try your best.", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("It's more than half, If you work a little more, \nyour skills will improve, right? \nI'll keep an eye on you a little longer, so try your best.", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
@@ -134,18 +148,22 @@ public class C2_11 : MonoBehaviour
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("절반은 넘었네, 조금만 더 일하면 실력이 늘겠는데? \n조금 더 지켜볼테니까 열심히 해봐.", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("절반은 넘었네, 조금만 더 일하면 실력이 늘겠는데? \n조금 더 지켜볼테니까 열심히 해봐.", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
         }
         else
         {
+            Zoom.instance.ShakP = 1f;
+            Zoom.instance.Shaking = true;
+            hmm.SetActive(true);
+
             if (DialogSystem.instance.Rang == 0)
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("I can't believe it's less than half... You should work harder. \nThere will be another opportunity to hire full-time employees someday, so work hard until then.", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("I can't believe it's less than half... You should work harder. \nThere will be another opportunity to hire full-time employees someday, so work hard until then.", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
@@ -153,15 +171,38 @@ public class C2_11 : MonoBehaviour
             {
                 var dialogTexts = new List<DialogData>();
 
-                dialogTexts.Add(new DialogData("절반도 못넘다니... 더 열심히 해야겠구나. \n언젠가 정직원 채용 기회가 또 있을테니 그때까지 열심히 일해보렴.", "End", () => Show_Fade()));
+                dialogTexts.Add(new DialogData("절반도 못넘다니... 더 열심히 해야겠구나. \n언젠가 정직원 채용 기회가 또 있을테니 그때까지 열심히 일해보렴.", "End", () => Show_button()));
 
                 DialogManager.Show(dialogTexts);
             }
         }
     }
 
-    public void Show_Fade()
+    public void Show_button()
     {
-        DialogSystem.instance.Endings = true;
+        Button.SetActive(true);
+    }
+
+        public void ShowEnding()
+    {
+        god.instance.Ending = true;
+
+        Ending.SetActive(true);
+
+        for (int i = 0; i < DialogSystem.instance.MadePf.Length - 1; i++)
+        {
+            if (DialogSystem.instance.MadePf[i] == true)
+            {
+                Charic[i].SetActive(true);
+            }
+        }
+
+        Invoke("Fal", 2f);
+    }
+
+    void Fal()
+    {
+        perfect.SetActive(false);
+        hmm.SetActive(false);
     }
 }

@@ -23,6 +23,11 @@ public class Memo : MonoBehaviour
         }
         else
         {
+            if (gameObject.name != "Mixture Note Shadow")
+            {
+                image.gameObject.transform.localScale = new Vector3(0.66f, 1, 1);
+            }
+
             if (DialogSystem.instance.Rang == 0)
             {
                 image.sprite = Memos[2];
